@@ -10,9 +10,9 @@
 
     <template v-if="dialogStep === 'pre-ask'">
       <div class="pre-ask-content">
-        <img :src="joeImage" alt="joe" class="joe-img" />
         <div style="color: white; font-size: 1.8rem; margin-bottom: 1rem;">Tengo una pregunta para tiii...</div>
-        <div style="color: white; font-size: 1rem; opacity: 0.8;">PD: Para responderla no hace falta estudiar ni hacer una presentaciooonn</div>
+        <img :src="joeImage" alt="joe" class="joe-img" />
+        <div style="color: white; font-size: 1rem; opacity: 0.8; margin-top: 1rem;">PD: Para responderla no hace falta estudiar ni hacer una presentaciooonn</div>
       </div>
       <div class="dialog-buttons">
         <button class="fall-button" @click="dialogStep = 'ask'">Ver pregunta</button>
