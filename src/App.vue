@@ -36,6 +36,11 @@
 
     <template v-if="dialogStep === 'party'">
       <div style="color: white">vamoooooooooossssss!</div>
+      <div class="heart-container">
+        <img :src="heartImage" alt="heart" class="small-heart" />
+        <img :src="heartImage" alt="heart" class="small-heart" />
+        <img :src="heartImage" alt="heart" class="small-heart" />
+      </div>
     </template>
   </dialog>
 </template>
@@ -49,6 +54,7 @@ import flower3 from '@/assets/images/flower_3.png'
 import flower4 from '@/assets/images/flower_4.png'
 import flower5 from '@/assets/images/flower_5.png'
 import flower6 from '@/assets/images/flower_6.png'
+import heartImage from '@/assets/images/corazon.png'
 import partyMusic from '@/assets/music/partyonwebbi.wav'
 
 const images = [flower1, flower2, flower3, flower4, flower5, flower6]
@@ -363,6 +369,23 @@ const gridStyle = computed(() => ({
   align-items: center;
   gap: 1rem;
   margin-bottom: 3.5rem;
+}
+
+.heart-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.small-heart {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+
+  @media (max-width: 767px) {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 .flower-dialog {
