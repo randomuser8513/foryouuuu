@@ -44,7 +44,8 @@ import partyMusic from '@/assets/music/partyonwebbi.wav'
 const images = [flower1, flower2, flower3, flower4, flower5, flower6]
 const audio = new Audio(partyMusic)
 audio.addEventListener('timeupdate', () => {
-  if (audio.duration - audio.currentTime <= 0.3) {
+  // Solo reajustar si estamos muy cerca del final y la duración es suficiente
+  if (audio.duration > 1 && audio.duration - audio.currentTime <= 0.3) {
     audio.currentTime = 0.95
   }
 })
@@ -175,14 +176,15 @@ function sureNo() {
 
 const cols = computed(() => {
   let c = Math.round(width.value / targetSize.value)
+  if (c < 1) c = 1 // Evitar división por cero
   const size = (width.value - (c - 1) * gap) / c
-  if (size < minSize.value) c--
+  if (size < minSize.value && c > 1) c--
   if (size > maxSize.value) c++
   return c
 })
 
 const cellSize = computed(() => (width.value - (cols.value - 1) * gap) / cols.value)
-const rows = computed(() => Math.ceil((height.value + gap) / (cellSize.value + gap)))
+const rows = computed(() => Math.max(1, Math.ceil((height.value + gap) / (cellSize.value + gap))))
 const totalCells = computed(() => cols.value * rows.value)
 
 // Variables de estado para valores aleatorios que no deben cambiar en cada re-render
@@ -202,13 +204,14 @@ function updateRandomLayout() {
       pCell = Math.floor(Math.random() * total) + 1
     } while (pCell === specialCell.value)
   } else {
-    pCell = specialCell.value // Fallback si solo hay una celda
+    pCell = specialCell.value
   }
   partyCell.value = pCell
 
-  shuffled.value = Array.from({ length: total }, () =>
-    images[Math.floor(Math.random() * images.length)]
-  )
+  shuffled.value = Array.from({ length: total }, (): string => {
+    const img = images[Math.floor(Math.random() * images.length)]
+    return img as string
+  })
 }
 
 // Actualizar layout cuando cambia el número de celdas
