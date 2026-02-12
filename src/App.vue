@@ -8,6 +8,17 @@
   <dialog ref="dialogRef" class="flower-dialog" @cancel.prevent>
     <button class="close-button" @click="closeDialog">&times;</button>
 
+    <template v-if="dialogStep === 'pre-ask'">
+      <div class="pre-ask-content">
+        <img :src="joeImage" alt="joe" class="joe-img" />
+        <div style="color: white; font-size: 1.8rem; margin-bottom: 1rem;">Tengo una pregunta para tiii...</div>
+        <div style="color: white; font-size: 1rem; opacity: 0.8;">PD: Para responderla no hace falta estudiar ni hacer una presentaciooonn</div>
+      </div>
+      <div class="dialog-buttons">
+        <button class="fall-button" @click="dialogStep = 'ask'">Ver pregunta</button>
+      </div>
+    </template>
+
     <template v-if="dialogStep === 'ask'">
       <div style="color: white">Paula, quieres ser mi San Valentín?</div>
       <div class="dialog-buttons">
@@ -39,6 +50,7 @@ import flower3 from '@/assets/images/flower_3.png'
 import flower4 from '@/assets/images/flower_4.png'
 import flower5 from '@/assets/images/flower_5.png'
 import flower6 from '@/assets/images/flower_6.png'
+import joeImage from '@/assets/images/joe.jpg'
 import partyMusic from '@/assets/music/partyonwebbi.wav'
 
 const images = [flower1, flower2, flower3, flower4, flower5, flower6]
@@ -84,7 +96,7 @@ function toggleRotation(i: number) {
 
 function onCellClick(i: number) {
   if (i === specialCell.value) {
-    dialogStep.value = 'ask'
+    dialogStep.value = 'pre-ask'
     dialogRef.value?.showModal()
   } else if (i === partyCell.value) {
     partyMode.value = !partyMode.value
@@ -99,11 +111,11 @@ function onCellClick(i: number) {
   }
 }
 
-const dialogStep = ref<'ask' | 'sure' | 'party'>('ask')
+const dialogStep = ref<'pre-ask' | 'ask' | 'sure' | 'party'>('pre-ask')
 
 function closeDialog() {
   dialogRef.value?.close()
-  dialogStep.value = 'ask'
+  dialogStep.value = 'pre-ask'
   if (partyMode.value) {
     stopParty()
   }
@@ -344,6 +356,28 @@ const gridStyle = computed(() => ({
     opacity: 0;
     transform: translateY(100vh);
     animation: rise 1.5s ease-out forwards;
+  }
+}
+
+.pre-ask-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3.5rem;
+}
+
+.joe-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+  @media (max-width: 767px) {
+    width: 90px;
+    height: 90px;
   }
 }
 
