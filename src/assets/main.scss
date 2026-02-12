@@ -1,0 +1,13 @@
+html, body, #app {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f5efe6;
+  cursor: url('./cursors/cursor_32.png'), auto;
+}
+
+button {
+  cursor: url('./cursors/hover_32.png'), pointer;
+}
