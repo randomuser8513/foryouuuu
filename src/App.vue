@@ -29,7 +29,7 @@
     <template v-if="dialogStep === 'sure'">
       <div style="color: white">Estás segura?</div>
       <div class="dialog-buttons">
-        <button ref="runawayRef" class="fall-button runaway" :style="{ transform: `translate(${runawayOffset.x}px, ${runawayOffset.y}px)` }" @mouseover="moveRunaway" @click="sureYes">Yes</button>
+        <button ref="runawayRef" class="fall-button runaway" :style="{ transform: `translate(${runawayOffset.x}px, ${runawayOffset.y}px)` }" @mouseover="moveRunaway" @click="sureYes">Sí</button>
         <button class="fall-button" @click="sureNo">No</button>
       </div>
     </template>
