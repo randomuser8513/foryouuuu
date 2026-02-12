@@ -11,7 +11,6 @@
     <template v-if="dialogStep === 'pre-ask'">
       <div class="pre-ask-content">
         <div style="color: white; font-size: 1.8rem; margin-bottom: 1rem;">Tengo una pregunta para tiii...</div>
-        <img :src="joeImage" alt="joe" class="joe-img" />
         <div style="color: white; font-size: 1rem; opacity: 0.8; margin-top: 1rem;">PD: Para responderla no hace falta estudiar ni hacer una presentaciooonn</div>
       </div>
       <div class="dialog-buttons">
@@ -50,7 +49,6 @@ import flower3 from '@/assets/images/flower_3.png'
 import flower4 from '@/assets/images/flower_4.png'
 import flower5 from '@/assets/images/flower_5.png'
 import flower6 from '@/assets/images/flower_6.png'
-import joeImage from '@/assets/images/joe.jpg'
 import partyMusic from '@/assets/music/partyonwebbi.wav'
 
 const images = [flower1, flower2, flower3, flower4, flower5, flower6]
@@ -365,20 +363,6 @@ const gridStyle = computed(() => ({
   align-items: center;
   gap: 1rem;
   margin-bottom: 3.5rem;
-}
-
-.joe-img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-
-  @media (max-width: 767px) {
-    width: 90px;
-    height: 90px;
-  }
 }
 
 .flower-dialog {
